@@ -182,7 +182,7 @@ function update() {
         bala.X = nave.X + 90;
     }
 
-    // muevo disparos jugador
+    // muevo disparos jugador ...
     for(var x=0;x<bala.length;x++){
         bala[x].Y -= 5;
         bala.splice(2, 1, bala );
@@ -198,7 +198,6 @@ function update() {
     animation();
 
 }
-
 
 
 //Funcion para dibujar jugador y enemigos
