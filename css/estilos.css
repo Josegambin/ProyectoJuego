@@ -1,0 +1,15 @@
+
+
+canvas{
+    box-shadow: 15px 15px 10px 5px maroon;
+    margin-left: 30%;
+    background-image: url("../img/fondoJuego.jpg");
+    margin-top: 8%;
+
+}
+
+body{
+    background-image: url("../img/fondotrasero.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
