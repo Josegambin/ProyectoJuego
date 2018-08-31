@@ -6,6 +6,8 @@ var ctx = canvas.getContext("2d");
 var puntos = 0;
 var vidas =3;
 var nivel = 0;
+var bala =[];
+var shoot = false;
 
 //Leer Imagen
 var image = new Image();
@@ -24,8 +26,9 @@ bonus2.src ="img/bonus2.png";
 var bonus1 = new Image();
 bonus1.src ="img/bonus1.png";
 
-var bala = new Image();
-bala.src ="img/bala.png"
+
+bala.length =0;
+
 
 //Array
 var nave = {
@@ -34,11 +37,6 @@ var nave = {
     image: image
 };
 
-var bala = {
-    X: 234,
-    Y: 170,
-    bala : bala,
-};
 
 
 var enemigo1 ={
@@ -87,7 +85,7 @@ window.addEventListener("keydown", function(event) {
 
     console.log(event.keyCode);
 
-    if(event.keyCode == 38 || event.keyCode == 87 || event.o){
+    if(event.keyCode == 38 || event.keyCode == 87 ){
         if(nave.Y >0) {
             console.log("Flecha Arriba y W");
             nave.Y -= 15;
@@ -116,9 +114,11 @@ window.addEventListener("keydown", function(event) {
         }
     }
     if(event.keyCode == 32){
-        if(bala.X >0){
-            bala.X +=15;
+        shoot = true;
+        if(bala.X >=0){
+            bala.X  -=15;
         }
+
     }
     animation();
 
@@ -126,6 +126,7 @@ window.addEventListener("keydown", function(event) {
 
 
 update();
+
 
 
 function update() {
@@ -141,7 +142,6 @@ function update() {
     bonus1.X--;
     bonus2.X--;
 
-    bala.X++;
 
 
     if (enemigo1.X <= 0 ) {
@@ -176,27 +176,7 @@ function update() {
         bonus2.X = 900;
         bonus2.Y =Math.floor((Math.random() * 670) + 1);
     }
-
-    if (bala.X > 900) {
-        bala.Y = nave.Y + 70;
-        bala.X = nave.X + 90;
-    }
-
-    // muevo disparos jugador ...
-    for(var x=0;x<bala.length;x++){
-        bala[x].Y -= 5;
-        bala.splice(2, 1, bala );
-
-        // si disparo jugador se sale del canvas
-      /*  if(bala[x].Y <= 0){
-            bala.splice(x, l);
-            continue;
-        }
-*/
-    }
-
     animation();
-
 }
 
 
@@ -205,7 +185,6 @@ function animation() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(nave.image, nave.X, nave.Y);
-    ctx.drawImage(bala.bala, bala.X, bala.Y);
     ctx.drawImage(enemigo1.imagen1, enemigo1.X, enemigo1.Y);
     ctx.drawImage(enemigo2.imagen2, enemigo2.X, enemigo2.Y);
     ctx.drawImage(enemigo3.imagen2, enemigo3.X, enemigo3.Y);
@@ -213,10 +192,26 @@ function animation() {
     ctx.drawImage(bonus2.bonus2, bonus2.X, bonus2.Y);
     ctx.drawImage(bonus1.bonus1, bonus1.X, bonus1.Y);
 
+    // dibujo disparos jugador
+    for(var i=0;i<bala.length;i++){
+        ctx.fillStyle = bala[i].color;
+        ctx.fillRect(bala[i].y, bala[i].x, 15, 6);
+    }
+    if(shoot == true){
+        bala.push({'x':nave.X, 'y':nave.Y, 'color':'lime'});
+        shoot = false;
+    }
+
+    for(var i=0;i<bala.length;i++){
+        bala[i].y += 3;
+
+    }
+
+
+
     // escribo puntos, vidas y nivel
     ctx.font = "bold 14px sans-serif";
     ctx.fillStyle = "white";
-    ctx.stroke()
     ctx.fillText("PUNTOS: "+ puntos, 10, 15);
     ctx.fillText("VIDAS: "+ vidas, canvas.width -90, 15);
     ctx.fillText("- NIVEL: " + nivel, 90, 15);
