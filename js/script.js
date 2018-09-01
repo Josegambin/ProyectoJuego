@@ -4,13 +4,14 @@
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 var puntos = 0;
-var vidas =3;
+var vidas = 3;
 var nivel = 0;
 var bala =[];
 var shoot = false;
 
 //Leer Imagen
 var image = new Image();
+image.id = 'nave';
 image.src = "img/jugadorBueno.png";
 
 var imagen1 = new Image();
@@ -27,17 +28,12 @@ var bonus1 = new Image();
 bonus1.src ="img/bonus1.png";
 
 
-bala.length =0;
-
-
 //Array
 var nave = {
     X: 100,
     Y: 100,
     image: image
 };
-
-
 
 var enemigo1 ={
     X: 700,
@@ -87,46 +83,35 @@ window.addEventListener("keydown", function(event) {
 
     if(event.keyCode == 38 || event.keyCode == 87 ){
         if(nave.Y >0) {
-            console.log("Flecha Arriba y W");
             nave.Y -= 15;
 
         }
     }
     if(event.keyCode == 40 || event.keyCode == 83){
         if(nave.Y <=510){
-            console.log("Flecha abajo y S");
             nave.Y +=15;
 
         }
     }
     if(event.keyCode == 39 || event.keyCode ==  68){
         if(nave.X <=720){
-            console.log("Flecha derecha y D");
             nave.X +=15;
 
         }
     }
     if(event.keyCode == 37 || event.keyCode == 65){
         if(nave.X >=0){
-            console.log("izquierda y A");
             nave.X -=15;
 
         }
     }
     if(event.keyCode == 32){
         shoot = true;
-        if(bala.X >=0){
-            bala.X  -=15;
-        }
 
     }
     animation();
 
 }, false);
-
-
-update();
-
 
 
 function update() {
@@ -141,7 +126,6 @@ function update() {
 
     bonus1.X--;
     bonus2.X--;
-
 
 
     if (enemigo1.X <= 0 ) {
@@ -180,9 +164,8 @@ function update() {
 }
 
 
-//Funcion para dibujar jugador y enemigos
+//Funcion para dibujar jugador, disparos y enemigos
 function animation() {
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(nave.image, nave.X, nave.Y);
     ctx.drawImage(enemigo1.imagen1, enemigo1.X, enemigo1.Y);
@@ -197,14 +180,17 @@ function animation() {
         ctx.fillStyle = bala[i].color;
         ctx.fillRect(bala[i].y, bala[i].x, 15, 6);
     }
+
+
     if(shoot == true){
-        bala.push({'x':nave.X, 'y':nave.Y, 'color':'lime'});
+        //Movimiento de la bala
+        bala.push({'x':nave.Y +120 , 'y':nave.X + 2, 'color':'lime'});
         shoot = false;
     }
 
     for(var i=0;i<bala.length;i++){
+        //Velocidad de la bala
         bala[i].y += 3;
-
     }
 
 
@@ -221,12 +207,4 @@ function animation() {
         ctx.fillStyle = "white";
         ctx.fillText("se ha acabado!", 250, 250);
     }
-
-
-
-
 }
-
-
-
-
