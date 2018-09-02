@@ -198,8 +198,8 @@ function update() {
         bonus2.Y =Math.floor((Math.random() * 670) + 1);
     }
 
-
-    for(var j=0;j<bala.length;j++){
+    //Colisiones
+   /* for(var j=0;j<bala.length;j++){
 
         if(bala[j].x <= enemigo1.X  && bala[j].x >= enemigo1.X ){
 
@@ -211,7 +211,7 @@ function update() {
 
         }
 
-    }
+    }*/
 
     animation();
 
