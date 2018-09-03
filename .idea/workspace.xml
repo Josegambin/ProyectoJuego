@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0adb41c4-0177-405c-848a-557db7914e9c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +18,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+            <state relative-caret-position="300">
+              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -43,14 +45,13 @@
       <file leaf-file-name="invaders.js" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/OneDrive/Desktop/invaders/invaders.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="179" column="5" lean-forward="true" selection-start-line="174" selection-start-column="4" selection-end-line="179" selection-end-column="5" />
+            <state relative-caret-position="2083">
+              <caret line="206" column="39" lean-forward="true" selection-start-line="206" selection-start-column="39" selection-end-line="206" selection-end-column="39" />
               <folding>
                 <element signature="n#!!block;n#onKeyDown#0" />
                 <element signature="n#!!block;n#onKeyUp#0" />
                 <element signature="n#!!block;n#draw#0" />
                 <element signature="n#!!block;n#clear#0" />
-                <element signature="n#!!block;n#checkCollisions#0" />
                 <element signature="n#!!block;n#makeInvader#0" />
                 <element signature="n#!!block;n#getInvaderStartPosition#0" />
                 <element signature="n#!!block;n#invaderShoots#0" />
@@ -62,18 +63,19 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="262" column="20" lean-forward="true" selection-start-line="262" selection-start-column="20" selection-end-line="262" selection-end-column="20" />
+            <state relative-caret-position="396">
+              <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
               <folding>
-                <element signature="e#531#575#0" />
-                <element signature="e#1052#1056#0" />
-                <element signature="e#1157#1806#0" />
-                <element signature="e#3196#3289#0" />
-                <element signature="e#3317#3411#0" />
-                <element signature="e#3439#3533#0" />
-                <element signature="e#3561#3654#0" />
-                <element signature="e#3680#3769#0" />
-                <element signature="e#3795#3883#0" />
+                <element signature="e#530#574#0" />
+                <element signature="e#587#637#0" />
+                <element signature="e#658#705#0" />
+                <element signature="e#722#769#0" />
+                <element signature="e#786#833#0" />
+                <element signature="e#849#896#0" />
+                <element signature="e#912#959#0" />
+                <element signature="e#1051#1055#0" />
+                <element signature="n#!!block;n#update#0" />
+                <element signature="n#!!block;n#animation#0" />
               </folding>
             </state>
           </provider>
@@ -187,6 +189,14 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="script.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="script.js" working-dir="$PROJECT_DIR$/js" />
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.script.js" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -212,16 +222,18 @@
       <workItem from="1535812755246" duration="13000" />
       <workItem from="1535813720525" duration="4250000" />
       <workItem from="1535827209753" duration="4037000" />
+      <workItem from="1535964383527" duration="5928000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71983000" />
+    <option name="totallyTimeSpent" value="77911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12447917" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12447917" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -251,7 +263,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -271,7 +283,6 @@
             <element signature="n#!!block;n#onKeyUp#0" />
             <element signature="n#!!block;n#draw#0" />
             <element signature="n#!!block;n#clear#0" />
-            <element signature="n#!!block;n#checkCollisions#0" />
             <element signature="n#!!block;n#makeInvader#0" />
             <element signature="n#!!block;n#getInvaderStartPosition#0" />
             <element signature="n#!!block;n#invaderShoots#0" />
@@ -316,7 +327,6 @@
             <element signature="n#!!block;n#onKeyUp#0" />
             <element signature="n#!!block;n#draw#0" />
             <element signature="n#!!block;n#clear#0" />
-            <element signature="n#!!block;n#checkCollisions#0" />
             <element signature="n#!!block;n#makeInvader#0" />
             <element signature="n#!!block;n#getInvaderStartPosition#0" />
             <element signature="n#!!block;n#invaderShoots#0" />
@@ -361,7 +371,6 @@
             <element signature="n#!!block;n#onKeyUp#0" />
             <element signature="n#!!block;n#draw#0" />
             <element signature="n#!!block;n#clear#0" />
-            <element signature="n#!!block;n#checkCollisions#0" />
             <element signature="n#!!block;n#makeInvader#0" />
             <element signature="n#!!block;n#getInvaderStartPosition#0" />
             <element signature="n#!!block;n#invaderShoots#0" />
@@ -406,7 +415,6 @@
             <element signature="n#!!block;n#onKeyUp#0" />
             <element signature="n#!!block;n#draw#0" />
             <element signature="n#!!block;n#clear#0" />
-            <element signature="n#!!block;n#checkCollisions#0" />
             <element signature="n#!!block;n#makeInvader#0" />
             <element signature="n#!!block;n#getInvaderStartPosition#0" />
             <element signature="n#!!block;n#invaderShoots#0" />
@@ -458,7 +466,6 @@
             <element signature="n#!!block;n#onKeyUp#0" />
             <element signature="n#!!block;n#draw#0" />
             <element signature="n#!!block;n#clear#0" />
-            <element signature="n#!!block;n#checkCollisions#0" />
             <element signature="n#!!block;n#makeInvader#0" />
             <element signature="n#!!block;n#getInvaderStartPosition#0" />
             <element signature="n#!!block;n#invaderShoots#0" />
@@ -496,7 +503,6 @@
             <element signature="n#!!block;n#onKeyUp#0" />
             <element signature="n#!!block;n#draw#0" />
             <element signature="n#!!block;n#clear#0" />
-            <element signature="n#!!block;n#checkCollisions#0" />
             <element signature="n#!!block;n#makeInvader#0" />
             <element signature="n#!!block;n#getInvaderStartPosition#0" />
             <element signature="n#!!block;n#invaderShoots#0" />
@@ -620,13 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/OneDrive/Desktop/invaders/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -634,16 +633,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/OneDrive/Desktop/invaders/invaders.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="179" column="5" lean-forward="true" selection-start-line="174" selection-start-column="4" selection-end-line="179" selection-end-column="5" />
+        <state relative-caret-position="2083">
+          <caret line="206" column="39" lean-forward="true" selection-start-line="206" selection-start-column="39" selection-end-line="206" selection-end-column="39" />
           <folding>
             <element signature="n#!!block;n#onKeyDown#0" />
             <element signature="n#!!block;n#onKeyUp#0" />
             <element signature="n#!!block;n#draw#0" />
             <element signature="n#!!block;n#clear#0" />
-            <element signature="n#!!block;n#checkCollisions#0" />
             <element signature="n#!!block;n#makeInvader#0" />
             <element signature="n#!!block;n#getInvaderStartPosition#0" />
             <element signature="n#!!block;n#invaderShoots#0" />
@@ -653,18 +658,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="262" column="20" lean-forward="true" selection-start-line="262" selection-start-column="20" selection-end-line="262" selection-end-column="20" />
+        <state relative-caret-position="396">
+          <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
           <folding>
-            <element signature="e#531#575#0" />
-            <element signature="e#1052#1056#0" />
-            <element signature="e#1157#1806#0" />
-            <element signature="e#3196#3289#0" />
-            <element signature="e#3317#3411#0" />
-            <element signature="e#3439#3533#0" />
-            <element signature="e#3561#3654#0" />
-            <element signature="e#3680#3769#0" />
-            <element signature="e#3795#3883#0" />
+            <element signature="e#530#574#0" />
+            <element signature="e#587#637#0" />
+            <element signature="e#658#705#0" />
+            <element signature="e#722#769#0" />
+            <element signature="e#786#833#0" />
+            <element signature="e#849#896#0" />
+            <element signature="e#912#959#0" />
+            <element signature="e#1051#1055#0" />
+            <element signature="n#!!block;n#update#0" />
+            <element signature="n#!!block;n#animation#0" />
           </folding>
         </state>
       </provider>

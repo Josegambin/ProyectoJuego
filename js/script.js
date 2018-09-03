@@ -4,11 +4,15 @@
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 var puntos = 0;
-var vidas;
+var vidas = 3;
 var nivel = 0;
 var bala =[];
 var shoot = false;
- vidas = 3;
+var audio = document.getElementById("audio");
+
+
+
+
 //Leer Imagen
 var image = new Image();
 image.id = 'nave';
@@ -39,6 +43,7 @@ var enemigo1 ={
     Y: 300,
     imagen1 : imagen1,
 };
+
 
 var enemigo2 ={
     X:530,
@@ -78,6 +83,7 @@ window.addEventListener("onmousedown", function (ev) {
 });
 
 //Escucha de teclas de movimientos de la nave
+
 window.addEventListener("keydown", function(event) {
 
     //Arriba / W
@@ -118,37 +124,30 @@ window.addEventListener("keydown", function(event) {
 //Colisiones de disparo con jugador
 function colisiones() {
 
-   /* // compruebo colision enemigo
-    for(var i=0;i<enemigo1.length;i++){
-        if(enemigo1[i].Y  >= nave.Y){
-            if( (enemigo1[i].x >= nave.X && enemigo1[i].x <= nave.X + nave.width) ||
-                (enemigo1[i].x + enemigo1.width >= nave.X && enemigo1[i].x + enemigo1.width <= nave.X + nave.width) ){
-                enemigo1.splice(i, 1);
-                vidas--;
-            }
-        }
-    }
-*/
-    // compruebo colision disparos jugador
-    for(var i=0;i<enemigo1.length;i++){
-        for(var j=0;j<bala.length;j++){
 
-            if(!enemigo1[i]) continue;
+        // compruebo colision disparos jugador
 
-            if(bala[j].x <= enemigo1[i].x  && bala[j].x >= enemigo1[i].x){
-                if( (bala[j].y >= enemigo1.y && bala[j].y <= enemigo1.y) || (bala.y >= enemigo1.y && bala[j]  <= enemigo1.y) ){
+            for(var j=0;j<bala.length;j++){
+                if(!enemigo1) continue;
+                    console.log("hay");
+                if(bala[j].y <= enemigo1.Y || bala[j].y >= enemigo1.Y){
+                    console.log("2");
+                    if(bala[j].x >= enemigo1.X && bala[j].x <= enemigo1.X ) {
+                        console.log("llegaaaaa");
+                        console.log(bala.x);
+                        console.log(enemigo1.X);
+                        audio.play();
+                        console.log("suena");
+                        puntos += 10;
+                        bala.splice(0, 1);
 
 
-                    puntos += 10;
-                    enemigo1.splice(i, 1);
-
-                    bala.splice(j, 1);
+                    }
                 }
             }
-        }
-    }
-}
 
+
+}
 
 update();
 function update() {
@@ -198,22 +197,7 @@ function update() {
         bonus2.Y =Math.floor((Math.random() * 670) + 1);
     }
 
-    //Colisiones
-   /* for(var j=0;j<bala.length;j++){
-
-        if(bala[j].x <= enemigo1.X  && bala[j].x >= enemigo1.X ){
-
-
-
-            if (bala[j].y >= enemigo1.Y  && bala[j].y <= enemigo1.Y) {
-                console.log("Conincide");
-            }
-
-        }
-
-    }*/
-
-    animation();
+     animation();
 
 }
 
@@ -248,8 +232,8 @@ function animation() {
 
     // disparos enemigo fuera de canvas
     for(var i=0;i<bala.length;i++){
-        if(bala[i].y >= canvas.width){
-            bala.splice(i, l);
+        if(bala[i].y >= 900){
+            bala.splice(i, 1);
         }
     }
 
@@ -265,4 +249,6 @@ function animation() {
         ctx.fillStyle = "white";
         ctx.fillText("se ha acabado!", 250, 250);
     }*/
+    colisiones();
+
 }
