@@ -75,16 +75,12 @@ var bonus2 = {
     bonus2 : bonus2
 };
 
-
-
 //Escucha de movimiento del mouse
 window.addEventListener("onmousedown", function (ev) {
-
 });
 
 //Escucha de teclas de movimientos de la nave
-
-window.addEventListener("keydown", function(event) {
+window.addEventListener("keyup", function(event) {
 
     //Arriba / W
     if(event.keyCode == 38 || event.keyCode == 87 ){
@@ -117,36 +113,56 @@ window.addEventListener("keydown", function(event) {
     animation();
 
 }, false);
+window.addEventListener("keydown", function(event) {
 
+    //Arriba / W
+    if(event.keyCode == 38 || event.keyCode == 87 ){
+        if(nave.Y >0) {
+            nave.Y -= 15;
+        }
+    }
+    //Abajo / S
+    if(event.keyCode == 40 || event.keyCode == 83){
+        if(nave.Y <=510){
+            nave.Y +=15;
+        }
+    }
+    //Derecha / D
+    if(event.keyCode == 39 || event.keyCode ==  68){
+        if(nave.X <=720){
+            nave.X +=15;
+        }
+    }
+    //Izquierda / A
+    if(event.keyCode == 37 || event.keyCode == 65){
+        if(nave.X >=0){
+            nave.X -=15;
+        }
+    }
+    //Disparo
+    if(event.keyCode == 32){
+        shoot = true;
+    }
+    animation();
 
+}, true);
 
+//Niveles de Juego
 
 //Colisiones de disparo con jugador
 function colisiones() {
-
-
         // compruebo colision disparos jugador
 
             for(var j=0;j<bala.length;j++){
                 if(!enemigo1) continue;
-                    console.log("hay");
                 if(bala[j].y <= enemigo1.Y || bala[j].y >= enemigo1.Y){
-                    console.log("2");
                     if(bala[j].x >= enemigo1.X && bala[j].x <= enemigo1.X ) {
-                        console.log("llegaaaaa");
-                        console.log(bala.x);
-                        console.log(enemigo1.X);
                         audio.play();
-                        console.log("suena");
                         puntos += 10;
                         bala.splice(0, 1);
-
-
                     }
                 }
             }
-
-
 }
 
 update();
@@ -159,44 +175,55 @@ function update() {
     enemigo2.X--;
     enemigo3.X--;
     enemigo4.X--;
-
     bonus1.X--;
     bonus2.X--;
-
 
     if (enemigo1.X <= 0 ) {
         enemigo1.X = 900;
         enemigo1.Y = Math.floor((Math.random() * 650) + 1);
     }
-
     if (enemigo2.X <= 0 ) {
-        enemigo2.X = 900;
-        enemigo2.Y = Math.floor((Math.random() * 650) + 1);
+        enemigo2.X = 900;enemigo2.Y = Math.floor((Math.random() * 650) + 1);
 
     }
-
     if (enemigo3.X <= 0 ) {
         enemigo3.X = 900;
         enemigo3.Y = Math.floor((Math.random() * 650) + 1);
-
     }
-
     if (enemigo4.X <= 0 ) {
         enemigo4.X = 900;
         enemigo4.Y = Math.floor((Math.random() * 650) + 1);
     }
-
     if (bonus1.X <= 0 ) {
         bonus1.X = 900;
         bonus1.Y =Math.floor((Math.random() * 670) + 1);
-
     }
-
     if (bonus2.X <= 0 ) {
         bonus2.X = 900;
         bonus2.Y =Math.floor((Math.random() * 670) + 1);
     }
 
+    //Niveles del Juego
+    if(puntos > 0 && puntos <=50){
+        nivel = 0;
+    }else if( puntos > 50 && puntos <=100){
+        nivel =1;
+        enemigo1.X -=1;
+    }else if( puntos > 100 && puntos <=150) {
+        nivel = 3;
+        enemigo1.X -=2;
+    }else if( puntos > 150 && puntos <= 200) {
+        nivel = 4;
+        enemigo1.X -=3;
+    }else if( puntos > 200 && puntos <= 250) {
+        nivel = 5;
+        enemigo1.X -=4;
+    }
+
+    if(puntos == 250){
+        alert("Has Ganado");
+
+    }
      animation();
 
 }
@@ -243,6 +270,7 @@ function animation() {
     ctx.fillText("PUNTOS: "+ puntos, 10, 15);
     ctx.fillText("VIDAS: "+ vidas, canvas.width -90, 15);
     ctx.fillText("- NIVEL: " + nivel, 90, 15);
+
 
    /* if(vidas = 0){
         ctx.font = "bold 20px sans-serif";
