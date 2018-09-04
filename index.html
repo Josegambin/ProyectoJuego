@@ -5,12 +5,14 @@
     <title>MI Primer Juego</title>
 
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
+
+
 </head>
 
 <body onload="update()">
 
     <audio  autoplay="autoplay" loop="loop">
-        <source src="sound/soundFondoN.mp3" type="audio/mp3">
+        <source src="sound/soundFondon.mp3" type="audio/mp3">
     </audio>
 
     <audio id="audio">
@@ -18,9 +20,30 @@
     </audio>
 
     <canvas width="900px" height="700px" id="canvas" ></canvas>
+     <script src="js/script.js"></script>
 
-  <script src="js/script.js"></script>
+    /* ventana de ganador */
 
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close"></span>
+        </div>
+        <input type="button" value="juegoNuevo" onClick="location.href=location.href" class="juegoNuevo">
+    </div>
+    <div id="gameover" class="modal">
+        <div class="gameover">
+            <span class="close"></span>
+        </div>
+        <input type="button" value="juegoNuevo" onClick="location.href=location.href" class="juegoNuevo">
+    </div>
+
+    <script>
+
+
+
+
+    </script>
 
 </body>
 </html>

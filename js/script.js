@@ -8,10 +8,12 @@ var vidas = 3;
 var nivel = 0;
 var bala =[];
 var shoot = false;
+var shootE= false;
 var audio = document.getElementById("audio");
-
-
-
+var request = 0;
+var modal;
+var gameover;
+var span;
 
 //Leer Imagen
 var image = new Image();
@@ -87,6 +89,7 @@ window.addEventListener("keyup", function(event) {
         if(nave.Y >0) {
             nave.Y -= 15;
         }
+
     }
     //Abajo / S
     if(event.keyCode == 40 || event.keyCode == 83){
@@ -120,6 +123,7 @@ window.addEventListener("keydown", function(event) {
         if(nave.Y >0) {
             nave.Y -= 15;
         }
+
     }
     //Abajo / S
     if(event.keyCode == 40 || event.keyCode == 83){
@@ -142,34 +146,48 @@ window.addEventListener("keydown", function(event) {
     //Disparo
     if(event.keyCode == 32){
         shoot = true;
+        shootE = true;
+
     }
     animation();
 
 }, true);
+document.addEventListener('DOMContentLoaded', function() {
+    modal = document.getElementById('myModal');
+    span = document.getElementsByClassName("close")[0];
 
-//Niveles de Juego
+}, false);
+document.addEventListener('DOMContentLoaded', function() {
+    gameover = document.getElementById('gameover');
+    span = document.getElementsByClassName("close")[0];
+}, false);
 
 //Colisiones de disparo con jugador
 function colisiones() {
-        // compruebo colision disparos jugador
+    // compruebo colision disparos jugador
 
-            for(var j=0;j<bala.length;j++){
-                if(!enemigo1) continue;
-                if(bala[j].y <= enemigo1.Y || bala[j].y >= enemigo1.Y){
-                    if(bala[j].x >= enemigo1.X && bala[j].x <= enemigo1.X ) {
-                        audio.play();
-                        puntos += 10;
-                        bala.splice(0, 1);
-                    }
+        for (var j = 0; j < bala.length; j++) {
+            if (!enemigo1) continue;
+            if (bala[j].y <= enemigo1.Y || bala[j].y >= enemigo1.Y) {
+                if (bala[j].x >= enemigo1.X && bala[j].x <= enemigo1.X) {
+                    console.log("COLISION");
+
+                    audio.play();
+                    vidas--;
+                    puntos += 10;
+                    bala.splice(0, 1);
+
                 }
             }
+        }
+
 }
 
 update();
 function update() {
     //Movimiento Enemigos
     //Funcion para el repintado del enemigo y eliminacion del anterior para visualizar los movimientos
-    requestAnimationFrame(update, canvas);
+    request = requestAnimationFrame(update, canvas);
     //A la poscion X del enemigo restamos pixeles 1 a 1
     enemigo1.X--;
     enemigo2.X--;
@@ -220,12 +238,17 @@ function update() {
         enemigo1.X -=4;
     }
 
-    if(puntos == 250){
-        alert("Has Ganado");
-
+    if(puntos ==100){
+        modal.style.display = "block";
+        //Pausa la animacion
+        cancelAnimationFrame(request);
     }
-     animation();
-
+    if(vidas > -1 && vidas < 1){
+        gameover.style.display = "block";
+        cancelAnimationFrame(request);
+    }
+    colisiones();
+    animation();
 }
 
 //Funcion para dibujar jugador, disparos y enemigos
@@ -245,19 +268,30 @@ function animation() {
         ctx.fillRect(bala[i].y, bala[i].x, 15, 6);
     }
 
-
+    //Posicion de Donde sale la bala del jugador
     if(shoot == true){
         //Movimiento de la bala
         bala.push({'x':nave.Y +83 , 'y':nave.X + 139, 'color':'lime'});
         shoot = false;
     }
 
+    //Posicion de Donde sale la bala del enemigo
+    if(shootE == true){
+        //Movimiento de la bala
+        bala.push({'x':enemigo1.Y +70 , 'y':enemigo1.X + 90, 'color':'pink'});
+        /**/
+
+        shootE = false;
+
+    }
+
+
     for(var i=0;i<bala.length;i++){
         //Velocidad de la bala
         bala[i].y += 3;
-    }
 
-    // disparos enemigo fuera de canvas
+    }
+    // disparos  fuera de canvas
     for(var i=0;i<bala.length;i++){
         if(bala[i].y >= 900){
             bala.splice(i, 1);
@@ -267,16 +301,10 @@ function animation() {
     // escribo puntos, vidas y nivel
     ctx.font = "bold 14px sans-serif";
     ctx.fillStyle = "white";
-    ctx.fillText("PUNTOS: "+ puntos, 10, 15);
+    ctx.fillText("PUNTOS: "+ puntos, 400, 15);
     ctx.fillText("VIDAS: "+ vidas, canvas.width -90, 15);
-    ctx.fillText("- NIVEL: " + nivel, 90, 15);
+    ctx.fillText("NIVEL: " + nivel, 10, 15);
 
 
-   /* if(vidas = 0){
-        ctx.font = "bold 20px sans-serif";
-        ctx.fillStyle = "white";
-        ctx.fillText("se ha acabado!", 250, 250);
-    }*/
-    colisiones();
 
 }
