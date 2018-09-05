@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0adb41c4-0177-405c-848a-557db7914e9c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/estilos.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/estilos.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
@@ -19,7 +18,7 @@
       <file leaf-file-name="estilos.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/estilos.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
+            <state relative-caret-position="1180">
               <caret line="59" selection-start-line="59" selection-end-line="59" />
             </state>
           </provider>
@@ -28,8 +27,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+            <state relative-caret-position="700">
+              <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -37,16 +36,38 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="516">
-              <caret line="242" column="28" selection-start-line="242" selection-start-column="28" selection-end-line="242" selection-end-column="28" />
+            <state relative-caret-position="386">
+              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
               <folding>
+                <element signature="e#640#684#0" />
+                <element signature="e#701#751#0" />
+                <element signature="e#769#816#0" />
+                <element signature="e#833#880#0" />
+                <element signature="e#897#944#0" />
+                <element signature="e#960#1007#0" />
+                <element signature="e#1023#1070#0" />
                 <element signature="e#1160#1163#0" />
                 <element signature="e#1262#1902#0" />
-                <element signature="e#1963#2705#0" />
-                <element signature="e#2771#2923#0" />
-                <element signature="e#2990#3142#0" />
+                <element signature="e#1963#2627#0" />
+                <element signature="e#2693#2801#0" />
+                <element signature="e#2868#2979#0" />
                 <element signature="n#!!block;n#colisiones#0" />
+                <element signature="n#!!block;n#update#0" />
                 <element signature="n#!!block;n#animation#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="invaders.js" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/OneDrive/Desktop/invaders/invaders.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-864">
+              <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+              <folding>
+                <element signature="n#!!block;n#clear#0" />
+                <element signature="n#!!block;n#checkCollisions#0" />
+                <element signature="n#!!block;n#getInvaderStartPosition#0" />
               </folding>
             </state>
           </provider>
@@ -90,8 +111,8 @@
         <option value="$PROJECT_DIR$/script.js" />
         <option value="$PROJECT_DIR$/css/csss.css" />
         <option value="$USER_HOME$/OneDrive/Desktop/invaders/invaders.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/estilos.css" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/script.js" />
       </list>
     </option>
@@ -200,11 +221,12 @@
       <workItem from="1536047294734" duration="17177000" />
       <workItem from="1536092541235" duration="3388000" />
       <workItem from="1536096184943" duration="1149000" />
+      <workItem from="1536131459279" duration="6659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106768000" />
+    <option name="totallyTimeSpent" value="113427000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -248,12 +270,20 @@
         <state relative-caret-position="3660">
           <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
           <folding>
+            <element signature="e#640#684#0" />
+            <element signature="e#701#751#0" />
+            <element signature="e#769#816#0" />
+            <element signature="e#833#880#0" />
+            <element signature="e#897#944#0" />
+            <element signature="e#960#1007#0" />
+            <element signature="e#1023#1070#0" />
             <element signature="e#1160#1163#0" />
             <element signature="e#1262#1902#0" />
-            <element signature="e#1963#2705#0" />
-            <element signature="e#2771#2923#0" />
-            <element signature="e#2990#3142#0" />
+            <element signature="e#1963#2627#0" />
+            <element signature="e#2693#2801#0" />
+            <element signature="e#2868#2979#0" />
             <element signature="n#!!block;n#colisiones#0" />
+            <element signature="n#!!block;n#update#0" />
             <element signature="n#!!block;n#animation#0" />
           </folding>
         </state>
@@ -557,38 +587,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/estilos.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1180">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/OneDrive/Desktop/invaders/invaders.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="856">
-          <caret line="206" column="39" selection-start-line="206" selection-start-column="39" selection-end-line="206" selection-end-column="39" />
+        <state relative-caret-position="-864">
+          <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!block;n#clear#0" />
+            <element signature="n#!!block;n#checkCollisions#0" />
+            <element signature="n#!!block;n#getInvaderStartPosition#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/estilos.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="700">
+          <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="242" column="28" selection-start-line="242" selection-start-column="28" selection-end-line="242" selection-end-column="28" />
+        <state relative-caret-position="386">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
           <folding>
+            <element signature="e#640#684#0" />
+            <element signature="e#701#751#0" />
+            <element signature="e#769#816#0" />
+            <element signature="e#833#880#0" />
+            <element signature="e#897#944#0" />
+            <element signature="e#960#1007#0" />
+            <element signature="e#1023#1070#0" />
             <element signature="e#1160#1163#0" />
             <element signature="e#1262#1902#0" />
-            <element signature="e#1963#2705#0" />
-            <element signature="e#2771#2923#0" />
-            <element signature="e#2990#3142#0" />
+            <element signature="e#1963#2627#0" />
+            <element signature="e#2693#2801#0" />
+            <element signature="e#2868#2979#0" />
             <element signature="n#!!block;n#colisiones#0" />
+            <element signature="n#!!block;n#update#0" />
             <element signature="n#!!block;n#animation#0" />
           </folding>
         </state>

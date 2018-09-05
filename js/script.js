@@ -3,17 +3,10 @@
 //El canvas
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
-var puntos = 0;
-var vidas = 3;
-var nivel = 0;
+var puntos = 0, vidas = 3, nivel = 0, shoot = false,  shootE = false, request = 0, modal, gameover, span;
 var bala =[];
-var shoot = false;
-var shootE= false;
+var balaE = [];
 var audio = document.getElementById("audio");
-var request = 0;
-var modal;
-var gameover;
-var span;
 
 //Leer Imagen
 var image = new Image();
@@ -45,7 +38,6 @@ var enemigo1 ={
     Y: 300,
     imagen1 : imagen1,
 };
-
 
 var enemigo2 ={
     X:530,
@@ -147,7 +139,6 @@ window.addEventListener("keydown", function(event) {
     if(event.keyCode == 32){
         shoot = true;
         shootE = true;
-
     }
     animation();
 
@@ -263,41 +254,44 @@ function animation() {
     //ctx.drawImage(bonus1.bonus1, bonus1.X, bonus1.Y);
 
     // dibujo disparos jugador
-    for(var i=0;i<bala.length;i++){
+    for (var i = 0; i < bala.length; i++) {
+        bala[i].y +=3;
         ctx.fillStyle = bala[i].color;
         ctx.fillRect(bala[i].y, bala[i].x, 15, 6);
     }
+    //dibujo disparos de enemigo
+    for (var i = 0; i < balaE.length; i++) {
+        balaE[i].y -= 3;
+        ctx.fillStyle = balaE[i].color;
+        ctx.fillRect( balaE[i].y, balaE[i].x, 15, 6);
+        console.log("llega");
+    }
 
     //Posicion de Donde sale la bala del jugador
-    if(shoot == true){
+    if (shoot == true) {
         //Movimiento de la bala
-        bala.push({'x':nave.Y +83 , 'y':nave.X + 139, 'color':'lime'});
+        bala.push({'x': nave.Y + 83, 'y': nave.X + 139, 'color': 'lime'});
         shoot = false;
     }
-
     //Posicion de Donde sale la bala del enemigo
-    if(shootE == true){
+    if (shootE == true) {
         //Movimiento de la bala
-        bala.push({'x':enemigo1.Y +70 , 'y':enemigo1.X + 90, 'color':'pink'});
-        /**/
-
+        balaE.push({ 'x': enemigo1.Y +55,'y': enemigo1.X , 'color': 'pink'});
         shootE = false;
-
     }
 
-
-    for(var i=0;i<bala.length;i++){
-        //Velocidad de la bala
-        bala[i].y += 3;
-
-    }
-    // disparos  fuera de canvas
+    // disparos  de jugador fuera de canvas
     for(var i=0;i<bala.length;i++){
         if(bala[i].y >= 900){
             bala.splice(i, 1);
         }
     }
-
+    //Disparo enemigo fuera del canvas
+    for(var i=0;i<balaE.length;i++){
+        if(balaE[i].y >= 900){
+            balaE.splice(i, 1);
+        }
+    }
     // escribo puntos, vidas y nivel
     ctx.font = "bold 14px sans-serif";
     ctx.fillStyle = "white";
