@@ -6,7 +6,10 @@ var ctx = canvas.getContext("2d");
 var puntos = 0, vidas = 3, nivel = 0, shoot = false,  shootE = false, request = 0, modal, gameover, span;
 var bala =[];
 var balaE = [];
+var enemigos = [];
+var bonus =[];
 var audio = document.getElementById("audio");
+
 
 //Leer Imagen
 var image = new Image();
@@ -26,6 +29,7 @@ var bonus1 = new Image();
 bonus1.src ="img/bonus1.png";
 
 
+
 //Array
 var nave = {
     X: 100,
@@ -36,38 +40,48 @@ var nave = {
 var enemigo1 ={
     X: 700,
     Y: 300,
-    imagen1 : imagen1,
+    imagen : imagen1,
 };
 
 var enemigo2 ={
     X:530,
     Y:200,
-    imagen2 : imagen2
+    imagen : imagen2
 };
+
+
 
 var enemigo3 ={
     X:700,
     Y:600,
-    imagen2 : imagen2
+    imagen : imagen2
 };
 
 var enemigo4 ={
     X:200,
     Y:500,
-    imagen2 : imagen2
+    imagen : imagen2
 };
+
+enemigos.push(enemigo1);
+enemigos.push(enemigo2);
+enemigos.push(enemigo3);
+enemigos.push(enemigo4);
 
 var bonus1 = {
     X: 500,
     Y: 115,
-    bonus1 : bonus1
+    bonus : bonus1
 };
 
 var bonus2 = {
     X: 400,
     Y: 650,
-    bonus2 : bonus2
+    bonus : bonus2
 };
+
+bonus.push(bonus2);
+bonus.push(bonus1);
 
 //Escucha de movimiento del mouse
 window.addEventListener("onmousedown", function (ev) {
@@ -155,23 +169,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //Colisiones de disparo con jugador
 function colisiones() {
+
     // compruebo colision disparos jugador
-
-        for (var j = 0; j < bala.length; j++) {
-            if (!enemigo1) continue;
-            if (bala[j].y <= enemigo1.Y || bala[j].y >= enemigo1.Y) {
-                if (bala[j].x >= enemigo1.X && bala[j].x <= enemigo1.X) {
-                    console.log("COLISION");
-
-                    audio.play();
-                    vidas--;
-                    puntos += 10;
-                    bala.splice(0, 1);
-
-                }
-            }
-        }
-
+   for (var j = 0; j < bala.length; j++) {
+     for (var i =0; i < enemigos.length; i++) {
+         if (!enemigos[i]) continue;
+          if (bala[j].y + enemigos[i].height <= enemigos[i].Y || bala[j].y >= enemigos[i].Y) {
+             if (bala[j].x <= enemigos[i].X + enemigos[i].width || bala[j].x >= enemigos[i].X) {
+                 audio.play();
+                 bala.splice(i, 1);
+                 enemigos.splice( i, 1);
+                 puntos +=10;
+             }
+         }
+     }
+    }
 }
 
 update();
@@ -246,13 +258,15 @@ function update() {
 function animation() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(nave.image, nave.X, nave.Y);
-    ctx.drawImage(enemigo1.imagen1, enemigo1.X, enemigo1.Y);
-    //ctx.drawImage(enemigo2.imagen2, enemigo2.X, enemigo2.Y);
-    //ctx.drawImage(enemigo3.imagen2, enemigo3.X, enemigo3.Y);
-    //ctx.drawImage(enemigo4.imagen2, enemigo4.X, enemigo4.Y);
-    //ctx.drawImage(bonus2.bonus2, bonus2.X, bonus2.Y);
-    //ctx.drawImage(bonus1.bonus1, bonus1.X, bonus1.Y);
+    //Dibujo enemigos
+    for(var i = 0; i < enemigos.length; i++){
+        ctx.drawImage(enemigos[i].imagen, enemigos[i].X, enemigos[i].Y);
+    }
 
+    //Dibujo bonus
+    for(var i =0; i< bonus.length;i++){
+        ctx.drawImage(bonus[i].bonus, bonus[i].X, bonus[i].Y);
+    }
     // dibujo disparos jugador
     for (var i = 0; i < bala.length; i++) {
         bala[i].y +=3;
@@ -264,7 +278,6 @@ function animation() {
         balaE[i].y -= 3;
         ctx.fillStyle = balaE[i].color;
         ctx.fillRect( balaE[i].y, balaE[i].x, 15, 6);
-        console.log("llega");
     }
 
     //Posicion de Donde sale la bala del jugador
@@ -273,10 +286,14 @@ function animation() {
         bala.push({'x': nave.Y + 83, 'y': nave.X + 139, 'color': 'lime'});
         shoot = false;
     }
-    //Posicion de Donde sale la bala del enemigo
+
+    //Posicion de Donde sale la bala del enemigo1
     if (shootE == true) {
         //Movimiento de la bala
         balaE.push({ 'x': enemigo1.Y +55,'y': enemigo1.X , 'color': 'pink'});
+        balaE.push({ 'x': enemigo2.Y +60,'y': enemigo2.X , 'color': 'pink'});
+        balaE.push({ 'x': enemigo3.Y +60,'y': enemigo3.X , 'color': 'pink'});
+        balaE.push({ 'x': enemigo4.Y +60,'y': enemigo4.X , 'color': 'pink'});
         shootE = false;
     }
 
@@ -298,7 +315,4 @@ function animation() {
     ctx.fillText("PUNTOS: "+ puntos, 400, 15);
     ctx.fillText("VIDAS: "+ vidas, canvas.width -90, 15);
     ctx.fillText("NIVEL: " + nivel, 10, 15);
-
-
-
 }
