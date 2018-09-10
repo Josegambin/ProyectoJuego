@@ -13,6 +13,7 @@ body{
     background-size: 100%;
 }
 
+/* Estilo de la ventana Modal Que hay por debajo */
 .modal {
     display: none;
     position: fixed;
@@ -27,6 +28,7 @@ body{
     background-color: rgba(0,0,0,0.4);
 }
 
+/* Estilo Ventana modal Winner*/
 .modal-content {
     background-image:url("../img/fondoWin.png");
     background-repeat: no-repeat;
@@ -38,19 +40,6 @@ body{
     height: 20%;
 }
 
-.close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: red;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 .juegoNuevo{
     margin-left: 44%;
@@ -66,3 +55,16 @@ body{
     width: 65%;
     height: 20%;
 }
+
+
+
+
+.form{
+    background-color:darkgray ;
+    margin-left: 38%;
+    margin-top: 10%;
+    padding: 20px;
+    width: 45%;
+    height: 20%;
+}
+

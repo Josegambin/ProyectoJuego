@@ -6,11 +6,11 @@
 
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
 
-
 </head>
 
 <body onload="update()">
 
+    <!-- Sonidos -->
     <audio  autoplay="autoplay" loop="loop">
         <source src="sound/soundFondon.mp3" type="audio/mp3">
     </audio>
@@ -19,20 +19,38 @@
         <source src ="sound/sonidoColisionEnemigo.mp3" type="audio/mp3">
     </audio>
 
+
     <canvas width="900px" height="700px" id="canvas" ></canvas>
-    <script src="js/script.js"></script>
+
+    <!-- Venta Ganador del Juego -->
 
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close"></span>
         </div>
         <input type="button" value="juegoNuevo" onClick="location.href=location.href" class="juegoNuevo">
     </div>
-<div id="gameover" class="modal">
+
+    <!-- Venta de Final de GAME OVER -->
+
+    <div id="gameover" class="modal">
         <div class="gameover">
-            <span class="close"></span>
         </div>
         <input type="button" value="juegoNuevo" onClick="location.href=location.href" class="juegoNuevo">
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+    <!--    Venta de inicio para elegir jostyck -->
+
+    <div class="modal" id="portada">
+        <div class="form">
+            <form id="formulario">
+                <input type="radio" name="jostyck" value="Teclado" checked> Teclado
+                <input type="radio" name="jostyck" value="Mouse"> Mouse<br>
+                <input type="button" value="Aceptar" onclick="f(document.getElementById('formulario'))">
+            </form>
+        </div>
     </div>
 
 </body>

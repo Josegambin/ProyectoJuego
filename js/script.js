@@ -3,13 +3,15 @@
 //El canvas
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
-var puntos = 0, vidas = 3, nivel = 0, shoot = false,  shootE = false, request = 0, modal, gameover, span;
+var puntos = 0, vidas = 3, nivel = 0, shoot = false,  shootE = false, request = 0, modal, gameover, span, inicio;
 var bala =[];
 var balaE = [];
 var enemigos = [];
 var bonus =[];
 var audio = document.getElementById("audio");
 
+//var left = ($('#game').width()/2)-playerImg.width/2;
+//var top = $('#game').height()-playerImg.height;
 
 //Leer Imagen
 var image = new Image();
@@ -27,8 +29,6 @@ bonus2.src ="img/bonus2.png";
 
 var bonus1 = new Image();
 bonus1.src ="img/bonus1.png";
-
-
 
 //Array
 var nave = {
@@ -48,8 +48,6 @@ var enemigo2 ={
     Y:200,
     imagen : imagen2
 };
-
-
 
 var enemigo3 ={
     X:700,
@@ -84,8 +82,23 @@ bonus.push(bonus2);
 bonus.push(bonus1);
 
 //Escucha de movimiento del mouse
-window.addEventListener("onmousedown", function (ev) {
-});
+/*
+window.onload = function(){
+
+    document.getElementById("canvas").onmousemove = function (e) {
+        if(e.movementX > 0) {
+                nave.X += 4;
+        }
+        if(e.movementX <= 510) {
+            nave.X += -4;
+        }
+
+    }
+
+}
+*/
+
+load();
 
 //Escucha de teclas de movimientos de la nave
 window.addEventListener("keyup", function(event) {
@@ -157,16 +170,29 @@ window.addEventListener("keydown", function(event) {
     animation();
 
 }, true);
+
+//Ventana fianl de ganador
 document.addEventListener('DOMContentLoaded', function() {
     modal = document.getElementById('myModal');
     span = document.getElementsByClassName("close")[0];
-
 }, false);
+
+//Ventana de GAME OVER
 document.addEventListener('DOMContentLoaded', function() {
     gameover = document.getElementById('gameover');
     span = document.getElementsByClassName("close")[0];
 }, false);
 
+//Ventana de inicio
+function load(){
+    document.addEventListener('DOMContentLoaded', function() {
+        modal = document.getElementById('portada');
+        modal.style.display = "block";
+        inicio = document.getElementById('inicio');
+        span = document.getElementsByClassName("close")[0];
+        update();
+    }, false);
+}
 //Colisiones de disparo con jugador
 function colisiones() {
 
@@ -179,15 +205,15 @@ function colisiones() {
                  audio.play();
                  bala.splice(i, 1);
                  enemigos.splice( i, 1);
-                 puntos +=10;
+                 puntos +=1000;
              }
          }
      }
     }
 }
-
 update();
 function update() {
+
     //Movimiento Enemigos
     //Funcion para el repintado del enemigo y eliminacion del anterior para visualizar los movimientos
     request = requestAnimationFrame(update, canvas);
@@ -241,7 +267,7 @@ function update() {
         enemigo1.X -=4;
     }
 
-    if(puntos ==100){
+    if(puntos >=100){
         modal.style.display = "block";
         //Pausa la animacion
         cancelAnimationFrame(request);
@@ -315,4 +341,32 @@ function animation() {
     ctx.fillText("PUNTOS: "+ puntos, 400, 15);
     ctx.fillText("VIDAS: "+ vidas, canvas.width -90, 15);
     ctx.fillText("NIVEL: " + nivel, 10, 15);
+}
+
+
+function f(a) {
+    console.log(a);
+    document.getElementById('portada').style.display='none';
+
+}
+
+document.getElementById("canvas").addEventListener("mousemove", function(event) {
+
+    myFunction(event);
+
+});
+
+function myFunction(e) {
+    cancelAnimationFrame(request);
+
+    var x = e.clientX - 650;
+    var y = e.clientY -120;
+
+    nave.X = x;
+    nave.Y = y;
+  /*
+    if(f(a) == "teclado"){
+        ddEventListener(e)
+    }
+    */
 }
