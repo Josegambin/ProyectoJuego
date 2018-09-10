@@ -142,7 +142,6 @@ window.addEventListener("keydown", function(event) {
         if(nave.Y >0) {
             nave.Y -= 15;
         }
-
     }
     //Abajo / S
     if(event.keyCode == 40 || event.keyCode == 83){
@@ -218,6 +217,7 @@ function update() {
     //Funcion para el repintado del enemigo y eliminacion del anterior para visualizar los movimientos
     request = requestAnimationFrame(update, canvas);
     //A la poscion X del enemigo restamos pixeles 1 a 1
+
     enemigo1.X--;
     enemigo2.X--;
     enemigo3.X--;
@@ -351,9 +351,7 @@ function f(a) {
 }
 
 document.getElementById("canvas").addEventListener("mousemove", function(event) {
-
     myFunction(event);
-
 });
 
 function myFunction(e) {
