@@ -9,6 +9,8 @@ var balaE = [];
 var enemigos = [];
 var bonus =[];
 var audio = document.getElementById("audio");
+var vida = document.getElementById("vida");
+
 
 
 //Leer Imagen
@@ -117,6 +119,7 @@ window.addEventListener("keyup", function(event) {
     //Disparo
     if(event.keyCode == 32){
         shoot = true;
+        shootE = true;
     }
     animation();
 
@@ -149,7 +152,6 @@ window.addEventListener("keydown", function(event) {
     //Disparo
     if(event.keyCode == 32){
         shoot = true;
-        shootE = true;
     }
 
     animation();
@@ -191,11 +193,12 @@ function colisiones() {
             if(bala[j].y <= enemigos[i].Y + enemigos[i].imagen.height && bala[j].y >= enemigos[i].Y){
                 if( (bala[j].x >= enemigos[i].X && bala[j].x <= enemigos[i].X + enemigos[i].imagen.width) ||
                     (bala[j].x + 2 >= enemigos[i].X && bala[j] + 2 <= enemigos[i].X + enemigos[i].imagen.width) ){
-
                     enemigos[i].X = 900;
                     enemigos[i].Y = Math.floor((Math.random() * 650) + 1);
                     audio.play();
                     bala.splice(1);
+                    puntos +=10;
+
                 }
             }
         }
@@ -204,19 +207,14 @@ function colisiones() {
 
 //Colision Cuerpo Jugador a Cuerpo enemigo
 
-//console.log(nave.Y + " > "+ enemigos[0].Y);
-//console.log("----------");
-//console.log((nave.Y + nave.image.width + " >= "+ enemigos[0].Y));
-
-    console.log(enemigos[0].Y +  enemigos[0].imagen.height +"   <=" + nave.Y );
-    
     for(var i=0;i<enemigos.length;i++){
         if((enemigos[i].Y + enemigos[i].imagen.height >= nave.Y) || ( nave.Y <= enemigos[i].Y   )){
             if( (enemigos[i].X >= nave.X && enemigos[i].X <= nave.X + nave.image.width) ||
                 (enemigos[i].X + enemigos[i].imagen.width >= nave.X && enemigos[i].X + enemigos[i].imagen.width <= nave.X + nave.image.width) ){
                     enemigos[i].X = 900;
                     enemigos[i].Y = Math.floor((Math.random() * 650) + 1);
-
+                    vidas--;
+                    vida.play();
             }
         }
     }
@@ -232,6 +230,11 @@ function colisiones() {
         }
     }
  */
+
+//Colision de bala con bonus.
+
+
+ //Colision de enemigo con bonus
 }
 
 update();
@@ -296,6 +299,8 @@ function update() {
         enemigo1.X -=4;
     }
 
+
+
     if(puntos >=100){
         modal.style.display = "block";
         //Pausa la animacion
@@ -320,15 +325,15 @@ function animation() {
 
 
     //Dibujo enemigos
-    for(var i = 0; i <1 ; i++){
+    for(var i = 0; i <enemigos.length ; i++){
         ctx.drawImage(enemigos[i].imagen, enemigos[i].X, enemigos[i].Y);
     }
 
-  /*  //Dibujo bonus
+   //Dibujo bonus
     for(var i =0; i< bonus.length;i++){
         ctx.drawImage(bonus[i].bonus, bonus[i].X, bonus[i].Y);
     }
-    */
+
     // dibujo disparos jugador
     for (var i = 0; i < bala.length; i++) {
         bala[i].x +=3;
@@ -350,14 +355,17 @@ function animation() {
     }
 
     //Posicion de Donde sale la bala del enemigo1
+
+
     if (shootE == true) {
         //Movimiento de la bala
-         balaE.push({ 'x': enemigo1.X + 5,'y': enemigo1.Y + 48 , 'color': 'pink'});
-      //  balaE.push({ 'x': enemigo2.Y +60,'y': enemigo2.X , 'color': 'pink'});
-       // balaE.push({ 'x': enemigo3.Y +60,'y': enemigo3.X , 'color': 'pink'});
-      //  balaE.push({ 'x': enemigo4.Y +60,'y': enemigo4.X , 'color': 'pink'});
+        balaE.push({'x': enemigo1.X + 5, 'y': enemigo1.Y + 48, 'color': 'pink'});
+        balaE.push({ 'x': enemigo2.X +40,'y': enemigo2.Y + 70 , 'color': 'pink'});
+        balaE.push({ 'x': enemigo3.X +40,'y': enemigo3.Y + 70, 'color': 'pink'});
+        balaE.push({ 'x': enemigo4.X +40,'y': enemigo4.Y + 70, 'color': 'pink'});
         shootE = false;
     }
+
 
     // disparos  de jugador fuera de canvas
     for(var i=0;i<bala.length;i++){
@@ -369,6 +377,7 @@ function animation() {
     for(var i=0;i<balaE.length;i++){
         if(balaE[i].x < 0){
             balaE.splice(i, 1);
+
         }
     }
     // escribo puntos, vidas y nivel
@@ -387,7 +396,6 @@ function f(a) {
 document.getElementById("canvas").addEventListener("onmousemove", function(event) {
     myFunction(event);
 });
-
 
 
 window.onload = function(){
@@ -409,6 +417,7 @@ window.onload = function(){
 
 };
 
+//Movimiento del raton
 function myFunction(e) {
     cancelAnimationFrame(request);
 
