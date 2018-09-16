@@ -10,13 +10,12 @@ var enemigos = [];
 var bonus =[];
 var audio = document.getElementById("audio");
 
-//var left = ($('#game').width()/2)-playerImg.width/2;
-//var top = $('#game').height()-playerImg.height;
 
 //Leer Imagen
 var image = new Image();
 image.id = 'nave';
 image.src = "img/jugadorBueno.png";
+
 
 var imagen1 = new Image();
 imagen1.src ="img/pulpo1.png";
@@ -38,8 +37,8 @@ var nave = {
 };
 
 var enemigo1 ={
-    X: 700,
-    Y: 300,
+    X: 900,
+    Y: 500,
     imagen : imagen1,
 };
 
@@ -82,21 +81,8 @@ bonus.push(bonus2);
 bonus.push(bonus1);
 
 //Escucha de movimiento del mouse
-/*
-window.onload = function(){
 
-    document.getElementById("canvas").onmousemove = function (e) {
-        if(e.movementX > 0) {
-                nave.X += 4;
-        }
-        if(e.movementX <= 510) {
-            nave.X += -4;
-        }
 
-    }
-
-}
-*/
 
 load();
 
@@ -136,7 +122,6 @@ window.addEventListener("keyup", function(event) {
 
 }, false);
 window.addEventListener("keydown", function(event) {
-
     //Arriba / W
     if(event.keyCode == 38 || event.keyCode == 87 ){
         if(nave.Y >0) {
@@ -166,8 +151,8 @@ window.addEventListener("keydown", function(event) {
         shoot = true;
         shootE = true;
     }
-    animation();
 
+    animation();
 }, true);
 
 //Ventana fianl de ganador
@@ -192,26 +177,66 @@ function load(){
         update();
     }, false);
 }
+
 //Colisiones de disparo con jugador
 function colisiones() {
 
-    // compruebo colision disparos jugador
-   for (var j = 0; j < bala.length; j++) {
-     for (var i =0; i < enemigos.length; i++) {
-         if (!enemigos[i]) continue;
-          if (bala[j].y + enemigos[i].height <= enemigos[i].Y || bala[j].y >= enemigos[i].Y) {
-             if (bala[j].x <= enemigos[i].X + enemigos[i].width || bala[j].x >= enemigos[i].X) {
-                 audio.play();
-                 bala.splice(i, 1);
-                 enemigos.splice( i, 1);
-                 puntos +=1000;
-             }
-         }
-     }
+//Colision Bala Juegador con enemigo
+
+    for(var i=0;i<enemigos.length;i++){
+        for(var j=0;j<bala.length;j++){
+
+            if(!enemigos[i]) continue;
+
+            if(bala[j].y <= enemigos[i].Y + enemigos[i].imagen.height && bala[j].y >= enemigos[i].Y){
+                if( (bala[j].x >= enemigos[i].X && bala[j].x <= enemigos[i].X + enemigos[i].imagen.width) ||
+                    (bala[j].x + 2 >= enemigos[i].X && bala[j] + 2 <= enemigos[i].X + enemigos[i].imagen.width) ){
+
+                    enemigos[i].X = 900;
+                    enemigos[i].Y = Math.floor((Math.random() * 650) + 1);
+                    audio.play();
+                    bala.splice(1);
+                }
+            }
+        }
     }
+
+
+//Colision Cuerpo Jugador a Cuerpo enemigo
+
+//console.log(nave.Y + " > "+ enemigos[0].Y);
+//console.log("----------");
+//console.log((nave.Y + nave.image.width + " >= "+ enemigos[0].Y));
+
+    console.log(enemigos[0].Y +  enemigos[0].imagen.height +"   <=" + nave.Y );
+    
+    for(var i=0;i<enemigos.length;i++){
+        if((enemigos[i].Y + enemigos[i].imagen.height >= nave.Y) || ( nave.Y <= enemigos[i].Y   )){
+            if( (enemigos[i].X >= nave.X && enemigos[i].X <= nave.X + nave.image.width) ||
+                (enemigos[i].X + enemigos[i].imagen.width >= nave.X && enemigos[i].X + enemigos[i].imagen.width <= nave.X + nave.image.width) ){
+                    enemigos[i].X = 900;
+                    enemigos[i].Y = Math.floor((Math.random() * 650) + 1);
+
+            }
+        }
+    }
+
+//Colision de bala de enemigo con jugador
+/*
+    for(var i=0;i<balaE.length;i++){
+        if(balaE[i].y >= nave.X){
+            if( (balaE[i].x <= nave.X && balaE[i].x <= nave.X + nave.image.width) || (balaE[i].x  >= nave.X && balaE[i]  <= nave.X + nave.image.width) ){
+                vidas--;
+                balaE.splice(i, -1);
+            }
+        }
+    }
+ */
 }
+
 update();
 function update() {
+
 
     //Movimiento Enemigos
     //Funcion para el repintado del enemigo y eliminacion del anterior para visualizar los movimientos
@@ -225,12 +250,16 @@ function update() {
     bonus1.X--;
     bonus2.X--;
 
-    if (enemigo1.X <= 0 ) {
+
+ if (enemigo1.X < 0 ) {
         enemigo1.X = 900;
         enemigo1.Y = Math.floor((Math.random() * 650) + 1);
     }
+
+
     if (enemigo2.X <= 0 ) {
-        enemigo2.X = 900;enemigo2.Y = Math.floor((Math.random() * 650) + 1);
+        enemigo2.X = 900;
+        enemigo2.Y = Math.floor((Math.random() * 650) + 1);
 
     }
     if (enemigo3.X <= 0 ) {
@@ -276,62 +305,69 @@ function update() {
         gameover.style.display = "block";
         cancelAnimationFrame(request);
     }
-    colisiones();
+
     animation();
+    colisiones();
+
 }
 
 //Funcion para dibujar jugador, disparos y enemigos
 function animation() {
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     ctx.drawImage(nave.image, nave.X, nave.Y);
+
+
     //Dibujo enemigos
-    for(var i = 0; i < enemigos.length; i++){
+    for(var i = 0; i <1 ; i++){
         ctx.drawImage(enemigos[i].imagen, enemigos[i].X, enemigos[i].Y);
     }
 
-    //Dibujo bonus
+  /*  //Dibujo bonus
     for(var i =0; i< bonus.length;i++){
         ctx.drawImage(bonus[i].bonus, bonus[i].X, bonus[i].Y);
     }
+    */
     // dibujo disparos jugador
     for (var i = 0; i < bala.length; i++) {
-        bala[i].y +=3;
+        bala[i].x +=3;
         ctx.fillStyle = bala[i].color;
-        ctx.fillRect(bala[i].y, bala[i].x, 15, 6);
+        ctx.fillRect( bala[i].x, bala[i].y, 15, 6);
     }
     //dibujo disparos de enemigo
     for (var i = 0; i < balaE.length; i++) {
-        balaE[i].y -= 3;
+        balaE[i].x -= 3;
         ctx.fillStyle = balaE[i].color;
-        ctx.fillRect( balaE[i].y, balaE[i].x, 15, 6);
+        ctx.fillRect( balaE[i].x, balaE[i].y ,15, 6);
     }
 
     //Posicion de Donde sale la bala del jugador
     if (shoot == true) {
         //Movimiento de la bala
-        bala.push({'x': nave.Y + 83, 'y': nave.X + 139, 'color': 'lime'});
+        bala.push({ 'x': nave.X + 139, 'y': nave.Y + 83, 'color': 'lime'});
         shoot = false;
     }
 
     //Posicion de Donde sale la bala del enemigo1
     if (shootE == true) {
         //Movimiento de la bala
-        balaE.push({ 'x': enemigo1.Y +55,'y': enemigo1.X , 'color': 'pink'});
-        balaE.push({ 'x': enemigo2.Y +60,'y': enemigo2.X , 'color': 'pink'});
-        balaE.push({ 'x': enemigo3.Y +60,'y': enemigo3.X , 'color': 'pink'});
-        balaE.push({ 'x': enemigo4.Y +60,'y': enemigo4.X , 'color': 'pink'});
+         balaE.push({ 'x': enemigo1.X + 5,'y': enemigo1.Y + 48 , 'color': 'pink'});
+      //  balaE.push({ 'x': enemigo2.Y +60,'y': enemigo2.X , 'color': 'pink'});
+       // balaE.push({ 'x': enemigo3.Y +60,'y': enemigo3.X , 'color': 'pink'});
+      //  balaE.push({ 'x': enemigo4.Y +60,'y': enemigo4.X , 'color': 'pink'});
         shootE = false;
     }
 
     // disparos  de jugador fuera de canvas
     for(var i=0;i<bala.length;i++){
-        if(bala[i].y >= 900){
+        if(bala[i].x >=900){
             bala.splice(i, 1);
         }
     }
     //Disparo enemigo fuera del canvas
     for(var i=0;i<balaE.length;i++){
-        if(balaE[i].y >= 900){
+        if(balaE[i].x < 0){
             balaE.splice(i, 1);
         }
     }
@@ -345,26 +381,42 @@ function animation() {
 
 
 function f(a) {
-    console.log(a);
     document.getElementById('portada').style.display='none';
-
 }
 
-document.getElementById("canvas").addEventListener("mousemove", function(event) {
+document.getElementById("canvas").addEventListener("onmousemove", function(event) {
     myFunction(event);
 });
+
+
+
+window.onload = function(){
+
+    document.getElementById("canvas").onmousemove = function (e) {
+        if((e.movementX >=0 )|| (e.movementX < 900)) {
+            nave.X += 4;
+        }
+        if(e.movementX <= 510) {
+            nave.X += -4;
+        }
+        if(e.movementY <= 510) {
+            nave.Y += -4;
+        }
+        if(e.movementY <= 510) {
+            nave.Y += -4;
+        }
+    }
+
+};
 
 function myFunction(e) {
     cancelAnimationFrame(request);
 
-    var x = e.clientX - 650;
-    var y = e.clientY -120;
+    var x = e.clientX ;
+    var y = e.clientY ;
 
     nave.X = x;
     nave.Y = y;
-  /*
-    if(f(a) == "teclado"){
-        ddEventListener(e)
-    }
-    */
+
 }
+

@@ -69,11 +69,11 @@ body{
 /* Estilo Ventana modal Formulario*/
 
 .form{
-    background-color:darkgray ;
-    margin-left: 38%;
+    background-image: url("../img/fondoinicio.png");
+    margin-left: 32%;
     margin-top: 10%;
     padding: 20px;
-    width: 45%;
+    width: 35%;
     height: 20%;
 }
 

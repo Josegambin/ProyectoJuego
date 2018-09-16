@@ -5,6 +5,7 @@
     <title>MI Primer Juego</title>
 
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
@@ -45,8 +46,8 @@
 
     <div class="modal" id="portada">
         <div class="form">
-            <form id="formulario">
-                <input type="radio" name="jostyck" value="Teclado" checked> Teclado
+            <form id="formulario" style="color: white">
+                <input type="radio" name="jostyck" value="Teclado" checked style="color: white"> Teclado <br/>
                 <input type="radio" name="jostyck" value="Mouse"> Mouse<br>
                 <input type="button" value="Aceptar" onclick="f(document.getElementById('formulario'))" class="jostyck">
             </form>
